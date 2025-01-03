@@ -3,7 +3,6 @@ from django.views.generic import TemplateView
 #Create your views here.
 
 
-
 class class_template(TemplateView):
     template_name = 'second_task/class_template.html'
 
