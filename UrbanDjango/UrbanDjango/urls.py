@@ -17,10 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from task2.views import class_template,func_template
+from task3.views import main_page,game_page,cart_page,button_a
 from django.views.generic import TemplateView
 
 urlpatterns = [
-    path('', func_template),
+    path('', main_page),
+    path('game_page/', game_page),
+    path('cart_page/', cart_page),
+    path('func_template/', func_template),
     path('class_template/', class_template.as_view()),
     # Второй вариант классового представления
     path('class_template2/', TemplateView.as_view(template_name='second_task/class_template.html'))
