@@ -6,7 +6,6 @@ def main_page(request):
     context = {'page_name': page_name}
     return render(request, 'fourth_task/platform.html',context)
 
-
 def game_page(request):
     page_name = "Игры"
     context = {
