@@ -8,6 +8,7 @@ from django.views.generic import TemplateView
 def main_page(request):
     return render(request, 'third_task/platform.html')
 
+
 def game_page(request):
     context = {
         "atomic": "Атомик Вар 100500",
