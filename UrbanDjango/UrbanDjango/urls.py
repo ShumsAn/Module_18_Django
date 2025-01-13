@@ -18,11 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from task2.views import class_template,func_template
 from task4.views import main_page,game_page,cart_page
+from task5.views import sign_up_by_django
 from django.views.generic import TemplateView
 
 
 urlpatterns = [
     path('', main_page),
+    path('sign_up_by_django/', sign_up_by_django,name='sign_up_by_django'),
     path('game_page/', game_page),
     path('cart_page/', cart_page),
     path('func_template/', func_template),
