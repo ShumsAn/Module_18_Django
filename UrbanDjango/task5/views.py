@@ -1,21 +1,46 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .forms import UserRegister
 
 # Create your views here.
+users = ['Vasya','Petya','Sanya']
 
 def sign_up_by_django(request):
-    users = ['Vasya','Petya','Sanya']
+
     info = {}
-    context = {'info': info,
-               'users':users}
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
         repeat_password = request.POST.get('repeat_password')
         age = request.POST.get('age')
-        if password == repeat_password :
-            print(f' username = {type(username)},password = {password} ,age = {age} ')
-            return HttpResponse (f"Приветствуем! {username}")
+        if username in users:
+            info['error'] = 'Пользователь уже существует'
+        elif int(age) < 18:
+            info['error'] = 'Вы должны быть старше 18'
+        elif password != repeat_password:
+            info['error'] = 'Пароли не совпадают'
+        else:
+            info['success'] = f'Приветствуем, {username}!'
 
+    info['form'] = UserRegister()
+    return render(request, 'fifth_task/registration_page.html',info)
 
-    return render(request, 'fifth_task/registration_page.html',context)
+def sign_up_by_html(request):
+    info = {}
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        repeat_password = request.POST.get('repeat_password')
+        age = request.POST.get('age')
+
+        if username in users:
+            info['error'] = 'Пользователь уже существует'
+        elif int(age) < 18:
+            info['error'] = 'Вы должны быть старше 18'
+        elif password != repeat_password:
+            info['error'] = 'Пароли не совпадают'
+        else:
+            info['success'] = f'Приветствуем, {username}!'
+
+    info['form'] = UserRegister()
+    return render(request, 'fifth_task/registration_page.html', info)
